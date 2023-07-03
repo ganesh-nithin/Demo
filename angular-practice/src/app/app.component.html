@@ -1,9 +1,9 @@
 <div>
   <h1>App Component</h1>
 
-  <div *hideAfter="5000; later: placeholder">
+  <div *hideAfter="7000 as time; later: placeholder">
     <h2>Temporary content</h2>
-    <p>This is a temporary content</p>
+    <p>This is a temporary content disappears after {{ time }} seconds</p>
   </div>
   <ng-template #placeholder>
     <section>
