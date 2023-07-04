@@ -36,7 +36,7 @@ export class HideAfterDirective implements OnInit {
     this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
     const intervalId = setInterval(() => {
       this.context.counter--;
-    });
+    },1000);
     setTimeout(() => {
       this.viewContainerRef.clear();
       if (this.placeholderRef)

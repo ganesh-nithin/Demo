@@ -1,0 +1,67 @@
+.page-container {
+  display: flex;
+  height: 100%;
+  background: rgb(35, 42, 58);
+}
+
+.page-content-container {
+  padding: 50px;
+}
+
+.sidebar {
+  height: 100%;
+  width: 300px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.list-items {
+  padding-top: 100px;
+}
+
+.list-item {
+  position: relative;
+  display: flex;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  font-family: "Roboto";
+  cursor: pointer;
+}
+
+.list-item:hover {
+  color: white;
+}
+
+.list-item.selected {
+  color: white;
+}
+
+.list-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 3px;
+  background-color: pink;
+
+  opacity: 0;
+
+  transform: scaleY(0);
+
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.list-item:hover::before {
+  opacity: 0.5;
+  transform: scaleY(0.5) scaleX(2);
+}
+
+.list-item.selected::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.list-item span.material-icons {
+  margin-right: 12px;
+}
