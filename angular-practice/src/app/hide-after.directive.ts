@@ -18,7 +18,7 @@ export class HideAfterDirective implements OnInit {
   @Input('hideAfter')
   set delay(value: number | null) {
     this._delay = value ?? 0;
-    this.context.hideAfter = this._delay / 1000;
+    this.context.hideAfter = this.context.counter = this._delay / 1000;
   }
   private _delay = 0;
 
@@ -34,10 +34,14 @@ export class HideAfterDirective implements OnInit {
 
   ngOnInit(): void {
     this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
+    const intervalId = setInterval(() => {
+      this.context.counter--;
+    });
     setTimeout(() => {
       this.viewContainerRef.clear();
       if (this.placeholderRef)
         this.viewContainerRef.createEmbeddedView(this.placeholderRef);
+      clearInterval(intervalId);
     }, this._delay);
   }
 }

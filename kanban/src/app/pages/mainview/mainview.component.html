@@ -1,0 +1,47 @@
+<div class="root">
+  <div class="navbar has-background-dark">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <h1 class="app-name has-gradient-text">Kanban</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="board">
+    <div class="board-bar">
+      <p class="board-name">Board Name</p>
+    </div>
+
+    <div class="board-wrapper">
+      <div class="board-columns" cdkDropListGroup>
+        <div class="board-column" *ngFor="let column of board.columns">
+          <div class="column-title">Ideas</div>
+
+          <div
+            class="tasks-container"
+            cdkDropList
+            #todoList="cdkDropList"
+            [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="drop($event)"
+          >
+            <div
+              class="task"
+              *ngFor="let item of column.tasks"
+              (click)="isClicked = !isClicked"
+              cdkDrag
+            >
+              <app-accordian [title]="item">
+                <p class="myPanelBody">
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Distinctio, optio, praesentium officia error nobis vel magnam
+                  ratione fuga in voluptatem doloremque eum omnis sunt nostrum
+                  at quia! Doloribus, blanditiis minus.
+                </p>
+              </app-accordian>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

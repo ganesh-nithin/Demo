@@ -1,0 +1,19 @@
+{
+  "name": "learn_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon assignments.js"
+  },
+  "keywords": [],
+  "author": "ganesh-nithin <sarvabhotla.g@solitontech>",
+  "license": "ISC",
+  "dependencies": {
+    "nodejs": "^0.0.0",
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

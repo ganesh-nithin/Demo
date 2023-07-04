@@ -1,0 +1,4 @@
+<div class="clickable" (click)="isHidden = !isHidden">{{ title }}</div>
+<div [hidden]="isHidden">
+  <ng-content select=".myPanelBody"></ng-content>
+</div>
