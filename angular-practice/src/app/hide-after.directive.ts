@@ -7,6 +7,9 @@ import {
 } from '@angular/core';
 
 class HideAfterContext {
+  public get $implicit() {
+    return this.hideAfter;
+  }
   public hideAfter = 0;
   public counter = 0;
 }
@@ -23,25 +26,44 @@ export class HideAfterDirective implements OnInit {
   private _delay = 0;
 
   @Input('hideAfterLater')
-  placeholderRef: TemplateRef<any> | null = null;
+  placeholderRef: TemplateRef<HideAfterContext> | null = null;
+
+  @Input('hideAfterAfter')
+  placeCapturerRef: TemplateRef<HideAfterContext> | null = null;
 
   private context = new HideAfterContext();
 
   constructor(
     private viewContainerRef: ViewContainerRef,
-    private templateRef: TemplateRef<any>
+    private templateRef: TemplateRef<HideAfterContext>
   ) {}
 
   ngOnInit(): void {
     this.viewContainerRef.createEmbeddedView(this.templateRef, this.context);
     const intervalId = setInterval(() => {
       this.context.counter--;
-    },1000);
+    }, 1000);
     setTimeout(() => {
       this.viewContainerRef.clear();
-      if (this.placeholderRef)
-        this.viewContainerRef.createEmbeddedView(this.placeholderRef);
-      clearInterval(intervalId);
+      setTimeout(() => {
+        if (this.placeholderRef)
+          this.viewContainerRef.createEmbeddedView(
+            this.placeholderRef,
+            this.context
+          );
+        clearInterval(intervalId);
+      }, 5000);
+      this.viewContainerRef.clear();
+
+      if (this.placeCapturerRef)
+        this.viewContainerRef.createEmbeddedView(this.placeCapturerRef);
     }, this._delay);
+  }
+
+  static ngTemplateContextGuard(
+    dir: HideAfterDirective,
+    ctx: unknown
+  ): ctx is HideAfterContext {
+    return true;
   }
 }

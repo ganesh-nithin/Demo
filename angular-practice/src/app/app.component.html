@@ -1,17 +1,36 @@
 <div>
   <h1>App Component</h1>
 
-  <div *hideAfter="7000 as time; later: placeholder; let counter = counter">
+  <div
+    *hideAfter="
+      5000 as time;
+      later: placeholder;
+      after: placecapturer;
+      let counter = counter;
+      let default
+    "
+  >
     <h2>Temporary content</h2>
     <p>
       This is a temporary content disappear after {{ time }} seconds. It
-      disappears in {{ counter }} seconds.
+      disappears in {{ counter }} seconds. {{ default }}
     </p>
   </div>
-  <ng-template #placeholder>
+  <ng-template #placeholder let-hiddenAfter="hideAfter" let-myDefault>
     <section>
       <h2>Place holder content</h2>
-      <p>This is the place holder</p>
+      <p>
+        This is the place holder. It was visible for {{ hiddenAfter }} seconds.
+        {{ myDefault }}
+      </p>
     </section>
   </ng-template>
+
+  <ng-template #placecapturer>
+    <h2>This is Place Capturer</h2>
+  </ng-template>
+
+  <section *ifLoaded="state">
+    Data was loaded. User name : {{ state.data.name }}
+  </section>
 </div>

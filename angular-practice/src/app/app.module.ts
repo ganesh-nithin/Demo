@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post/post.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { FormsModule } from '@angular/forms';
+import { IfLoadedDirective } from './if-loaded.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     PostsComponent,
     PostComponent,
     PostDetailComponent,
+    IfLoadedDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
